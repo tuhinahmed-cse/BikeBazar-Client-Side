@@ -1,3 +1,4 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -7,7 +8,8 @@ import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, providerLogin } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
     const [loginError, setLoginError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -31,6 +33,23 @@ const Login = () => {
                 setLoginError(error.message);
                 toast.error(error.message);
             });
+    }
+
+    const handleGoogleSignIn =()=>{
+
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            navigate(from, {replace:true});
+            toast.success('Login Sucessfully! Thank You')
+    
+        })
+        .catch(error => {
+            console.error(error)
+            toast.error(error.message);
+        })
+    
     }
 
     return (
@@ -61,7 +80,7 @@ const Login = () => {
                 </form>
                 <p style={{ color: '#dd2c00', fontFamily: 'cursive', fontSize: '20px' }} >New to Bike Bazar? <Link className='' to="/register" style={{ color: '#ff8a65', fontFamily: 'cursive', fontSize: '20px' }}> <button className="btn btn-outline btn-success">Please Register</button></Link></p>
                 <div className="divider text-white">OR</div>
-                <button className="btn btn-outline btn-secondary w-full">CONTINUE WITH GOOGLE</button>
+                <button className="btn btn-outline btn-secondary w-full" onClick={handleGoogleSignIn}>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

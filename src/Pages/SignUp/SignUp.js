@@ -1,14 +1,17 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import bike from '../../assets/bike'
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const SignUp = () => {
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, providerLogin } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const googleProvider = new GoogleAuthProvider();
     const [signUpError, setSignUPError] = useState('');
+    const navigate = useNavigate();
 
     const handleSignUp = (data) => {
         console.log(data);
@@ -31,6 +34,23 @@ const SignUp = () => {
                 setSignUPError(error.message)
             });
 
+    }
+
+    const handleGoogleSignIn =()=>{
+
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            navigate('/');
+            toast.success('Login Sucessfully! Thank You')
+    
+        })
+        .catch(error => {
+            console.error(error)
+            toast.error(error.message);
+        })
+    
     }
 
     return (
@@ -79,7 +99,7 @@ const SignUp = () => {
                 </form>
                 <p style={{ color: '#dd2c00', fontFamily: 'cursive', fontSize: '20px' }} >Already have an account ? <Link className='' to="/login" style={{ color: '#ff8a65', fontFamily: 'cursive', fontSize: '20px' }}> <button className="btn btn-outline btn-success">Please Login</button></Link></p>
                 <div className="divider text-white">OR</div>
-                <button className="btn btn-outline btn-secondary w-full">CONTINUE WITH GOOGLE</button>
+                <button className="btn btn-outline btn-secondary w-full" onClick={handleGoogleSignIn}>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
