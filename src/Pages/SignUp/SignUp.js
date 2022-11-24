@@ -18,6 +18,13 @@ const SignUp = () => {
             <div className='w-96 p-7'>
                 <h2 className='text-3xl text-center font-bold mb-8 text-secondary' style={{ fontFamily: 'cursive' }} >Register To Our Website Bike Bazar</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label"> <span className="label-text text-secondary " style={{ fontFamily: 'cursive', fontSize: '20px' }}>Name</span></label>
+                        <input type="text" {...register("name", {
+                            required: "Name is Required"
+                        })} className="input input-bordered w-full max-w-xs" />
+                        {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
+                    </div>
 
                     <div className="form-control  w-full max-w-xs font-bold ">
                         <label className="label"> <span className="label-text text-secondary" style={{ fontFamily: 'cursive', fontSize: '20px' }}>Email</span></label>
