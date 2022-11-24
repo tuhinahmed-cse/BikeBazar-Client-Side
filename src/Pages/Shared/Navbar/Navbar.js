@@ -5,10 +5,10 @@ const Navbar = () => {
 
     const menuItems = <>
 
-        <li><Link to="/" className='text-white font-bold'>HOME</Link></li>
-        <li><Link to="/" className='text-white font-bold'>BLOG</Link></li>
-        <li><Link to="/" className='text-white font-bold'>DASHBOARD</Link></li>
-        <li><Link to="/"><button type="button" class="btn btn-active btn-primary">
+        <li><Link to="/" className=' font-bold'>HOME</Link></li>
+        <li><Link to="/" className=' font-bold'>BLOG</Link></li>
+        <li><Link to="/" className='font-bold'>DASHBOARD</Link></li>
+        <li><Link to="/login"><button type="button" class="btn btn-active btn-primary">
             Login</button></Link></li>
         <li><Link to="/"><button type="button" class="btn btn-active btn-primary">
             Logout</button></Link></li>
