@@ -4,7 +4,7 @@ import about from "../../../assets/About.jpg"
 
 const About = () => {
     return (
-        <div className="hero  bg-base-200" style={{ backgroundImage: `url(${about})`, height:'600px' }}>
+        <div className="hero  bg-base-200" style={{ backgroundImage: `url(${about})`, height:'600px', }}>
   <div className="hero-content ">
     
     <div>

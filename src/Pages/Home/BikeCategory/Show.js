@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Show = ({ category }) => {
+const Show = ({ category, setBooks }) => {
   // console.log(category);
   const { name, condition, Mobile, description, img, location, orginal_price, resale_price, seller_name, time, year_use } = category;
 
@@ -38,7 +38,12 @@ const Show = ({ category }) => {
         <div className="divider"></div>
         <div className="lg:flex card-actions justify-between">
           <button className="btn btn-primary">Report Admin</button>
-          <button className="btn btn-primary">Book Now</button>
+          <label
+                       
+                        htmlFor="booking-modal"
+                        className="btn btn-primary"
+                        onClick={() => setBooks(category)}
+                    >Book Appointment</label>
         </div>
       </div>
     </div>

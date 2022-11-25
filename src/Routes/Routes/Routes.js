@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layouts/Main";
 import AllBikeCategory from "../../Pages/Home/BikeCategory/AllBikeCategory";
+import BikeBookingModal from "../../Pages/Home/BikeCategory/Bikebooking/BikeBookingModal";
 import BikeCollection from "../../Pages/Home/BikeCategory/BikeCollection";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
                 element: <AllBikeCategory></AllBikeCategory>,
                 loader:({ params }) => fetch(`http://localhost:5000/bikes/${params.id}`)
             },
+           
             
         ]
     }
