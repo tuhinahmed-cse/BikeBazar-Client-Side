@@ -52,6 +52,18 @@ const Login = () => {
             
             toast.success('Login Sucessfully! Thank You')
             saveUser(user.displayName, user.email, user.role);
+
+
+            fetch(`http://localhost:5000/users/${ user.email}`, {
+            method: 'PUT', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            
+        })
         })
         .catch(error => {
             console.error(error)
@@ -109,3 +121,4 @@ const Login = () => {
 };
 
 export default Login;
+

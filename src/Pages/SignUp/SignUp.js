@@ -55,6 +55,17 @@ const SignUp = () => {
            
             toast.success('Login Sucessfully! Thank You')
             saveUser(user.displayName, user.email, user.role);
+
+            fetch(`http://localhost:5000/users/${ user.email}`, {
+            method: 'PUT', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            
+        })
     
         })
         .catch(error => {
@@ -80,7 +91,7 @@ const SignUp = () => {
     }
 
     return (
-        <div className='h-[800px] flex justify-center items-center mb-16 ' style={{ backgroundImage: `url(${bike})`, height: '90vh', }}>
+        <div className='h-[800px] flex justify-center items-center mb-16 ' style={{ backgroundImage: `url(${bike})`, height: '110vh', }}>
             <div className='w-96 p-7'>
                 <h2 className='text-3xl text-center font-bold mb-8 text-secondary' style={{ fontFamily: 'cursive' }} >Register To Our Website Bike Bazar</h2>
                 <form onSubmit={handleSubmit(handleSignUp)}>
