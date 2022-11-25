@@ -11,6 +11,7 @@ import Login from "../../Pages/Login/Login";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import BuyerRoute from "../BuyerRoute/BuyerRoute";
 import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
 const router = createBrowserRouter([
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
             {
 
                 path: '/dashboard/userbooks',
-                element: <UserBookings></UserBookings>
+                element: <BuyerRoute><UserBookings></UserBookings></BuyerRoute>
             },
             {
 
