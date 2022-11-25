@@ -38,7 +38,7 @@ const Sellers = () => {
     }
     return (
         <div className='mt-5'>
-        <h2 className='text-center font-bold mb-5' style={{ color: '#3e2723', fontFamily: 'cursive', fontSize: '22px' }}> All Buyers</h2>
+        <h2 className='text-center font-bold mb-5' style={{ color: '#3e2723', fontFamily: 'cursive', fontSize: '22px' }}> All Sellers</h2>
         <div className="overflow-x-auto">
 <table className="table w-full">
  <thead>
