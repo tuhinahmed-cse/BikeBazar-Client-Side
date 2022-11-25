@@ -5,13 +5,20 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import bike from '../../assets/bike'
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
     const { createUser, updateUser, providerLogin } = useContext(AuthContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const googleProvider = new GoogleAuthProvider();
     const [signUpError, setSignUPError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+
+    if(token){
+        navigate('/');
+    }
 
     const handleSignUp = (data) => {
         console.log(data);
@@ -44,9 +51,10 @@ const SignUp = () => {
         providerLogin(googleProvider)
         .then(result => {
             const user = result.user;
-            console.log(user);
-            navigate('/');
+            console.log();
+           
             toast.success('Login Sucessfully! Thank You')
+            saveUser(user.displayName, user.email, user.role);
     
         })
         .catch(error => {
@@ -67,7 +75,7 @@ const SignUp = () => {
         })
         .then(res => res.json())
         .then(data =>{
-            navigate('/');
+            setCreatedUserEmail(email);
         })
     }
 

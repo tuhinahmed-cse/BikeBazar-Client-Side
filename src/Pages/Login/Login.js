@@ -5,16 +5,23 @@ import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import bike from '../../assets/bike'
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { signIn, providerLogin } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
     const [loginError, setLoginError] = useState('');
+    const [loginUserEmail, setLoginUserEmail] = useState('');
+    const [token] = useToken(loginUserEmail);
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
+
+    if (token) {
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = data =>{
 
@@ -25,8 +32,9 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setLoginUserEmail(data.email);
                 toast.success(" User Login Sucessfully")
-                navigate(from, {replace: true});
+                
             })
             .catch(error => {
                 console.log(error.message)
@@ -41,15 +49,30 @@ const Login = () => {
         .then(result => {
             const user = result.user;
             console.log(user);
-            navigate(from, {replace:true});
+            
             toast.success('Login Sucessfully! Thank You')
-    
+            saveUser(user.displayName, user.email, user.role);
         })
         .catch(error => {
             console.error(error)
             toast.error(error.message);
         })
     
+    }
+
+    const saveUser = (name, email, role) =>{
+        const user ={name, email, role};
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setLoginUserEmail(email);
+        })
     }
 
     return (
