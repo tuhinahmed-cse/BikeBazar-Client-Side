@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import BikeBookingModal from './Bikebooking/BikeBookingModal';
@@ -7,6 +8,7 @@ const AllBikeCategory = () => {
     const categories = useLoaderData();
 
     const [books, setBooks] = useState(null);
+   
     
 
     return (

@@ -26,7 +26,10 @@ const SignUp = () => {
                     role: data.role
                 }
                 updateUser(userInfo)
-                    .then(() => { })
+                    .then(() => {
+
+                        navigate('/');
+                     })
                     .catch(err => console.log(err));
             })
             .catch(error => {

@@ -43,7 +43,7 @@ const Show = ({ category, setBooks }) => {
                         htmlFor="booking-modal"
                         className="btn btn-primary"
                         onClick={() => setBooks(category)}
-                    >Book Appointment</label>
+                    >Book Bike</label>
         </div>
       </div>
     </div>
