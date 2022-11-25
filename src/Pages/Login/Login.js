@@ -74,7 +74,6 @@ const Login = () => {
             setLoginUserEmail(email);
         })
     }
-
     return (
         <div className='h-[800px] flex justify-center items-center mb-16 ' style={{ backgroundImage: `url(${bike})`, height: '90vh', }}>
             <div className='w-96 p-7'>
