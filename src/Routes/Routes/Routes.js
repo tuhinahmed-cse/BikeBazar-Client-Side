@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
+import Dashboard from "../../Layouts/Dashboard";
 import Main from "../../Layouts/Main";
+import UserBookings from "../../Pages/Dashboard/UserBookings/UserBookings";
 import AllBikeCategory from "../../Pages/Home/BikeCategory/AllBikeCategory";
 import BikeBookingModal from "../../Pages/Home/BikeCategory/Bikebooking/BikeBookingModal";
 import BikeCollection from "../../Pages/Home/BikeCategory/BikeCollection";
@@ -7,6 +9,7 @@ import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import ErrorPage from "../../Pages/Shared/ErrorPage/ErrorPage";
 import SignUp from "../../Pages/SignUp/SignUp";
+import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
 const router = createBrowserRouter([
 
@@ -30,11 +33,26 @@ const router = createBrowserRouter([
             },
             {
                 path: '/collection/:id',
-                element: <AllBikeCategory></AllBikeCategory>,
+                element: <PrivateRoute><AllBikeCategory></AllBikeCategory></PrivateRoute>,
                 loader:({ params }) => fetch(`http://localhost:5000/bikes/${params.id}`)
             },
-           
             
+        ]
+    },
+
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        errorElement:<ErrorPage></ErrorPage>,
+        children:[
+
+
+            {
+
+                path: '/dashboard/userbooks',
+                element: <UserBookings></UserBookings>
+            }
+
         ]
     }
 ])

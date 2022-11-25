@@ -4,10 +4,10 @@ import { AuthContext } from '../../../../contexts/AuthProvider';
 
 const BikeBookingModal = ({books, setBooks}) => {
 
-    const {category_title,name,resale_price  } = books;
+    const {category_title,name,resale_price , img } = books;
 
     const {user} = useContext(AuthContext);
-//  console.log(books);
+ console.log(books);
  
 
 
@@ -22,9 +22,10 @@ const BikeBookingModal = ({books, setBooks}) => {
         const price = form.price.value;
         const phone = form.phone.value;
         const location = form.location.value;
+        const image = form.image.value;
 
         const booking = {
-            name, email, bName, price, phone, location
+            name, email, bName, price, phone, location, image
         }
 
         fetch('http://localhost:5000/bookings', {
@@ -71,6 +72,8 @@ const BikeBookingModal = ({books, setBooks}) => {
                 <input name="phone" type="text" placeholder="Mobile" className="input w-full input-bordered" />
 
                 <input name="location" type="text" placeholder="Meeting Location" className="input w-full input-bordered" />
+
+                <input name="image" type="hidden" defaultValue={img} placeholder="image" className="input w-full input-bordered" />
 
                     <br />
                     <input className='btn btn-accent w-full' type="submit" value="Submit" />

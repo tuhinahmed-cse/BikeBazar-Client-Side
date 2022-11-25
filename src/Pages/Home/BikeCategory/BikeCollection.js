@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const BikeCollection = ({category}) => {
 
-    console.log(category)
+    // console.log(category)
     const{category_id, category_title, img }= category;
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
