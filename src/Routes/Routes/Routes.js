@@ -4,6 +4,7 @@ import Main from "../../Layouts/Main";
 import UserBookings from "../../Pages/Dashboard/UserBookings/UserBookings";
 import AllUsers from "../../Pages/Dashboard/Users/AllUsers";
 import Buyers from "../../Pages/Dashboard/Users/Buyers";
+import Sellers from "../../Pages/Dashboard/Users/Sellers";
 import AllBikeCategory from "../../Pages/Home/BikeCategory/AllBikeCategory";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
 
                 path: '/dashboard/allbuyers',
                 element: <Buyers></Buyers>
+            },
+            {
+
+                path: '/dashboard/allsellers',
+                element: <Sellers></Sellers>
             }
 
         ]

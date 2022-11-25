@@ -21,6 +21,7 @@ const Dashboard = () => {
                              <>
                                 <li><Link to="/dashboard/userbooks" className='font-bold text-2xl' style={{color:'#ef6c00', fontFamily:'cursive', }}>My Orders</Link></li>
                                 <li><Link to="/dashboard/allbuyers" className='font-bold text-2xl' style={{color:'#ef6c00', fontFamily:'cursive', }}>All Buyers</Link></li>
+                                <li><Link to="/dashboard/allsellers" className='font-bold text-2xl' style={{color:'#ef6c00', fontFamily:'cursive', }}>All Sellers</Link></li>
                             </>
                         }
 
