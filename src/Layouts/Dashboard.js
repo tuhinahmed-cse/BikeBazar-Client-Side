@@ -8,7 +8,7 @@ const Dashboard = () => {
 
     const { user } = useContext(AuthContext);
     const [isAdmin] = useAdmin(user?.email);
-    
+
     return (
         <div>
             <Navbar></Navbar>
