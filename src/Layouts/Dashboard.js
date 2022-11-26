@@ -28,6 +28,7 @@ const Dashboard = () => {
                             <>
                                 <li><Link to="/dashboard/allbuyers" className='font-bold text-2xl' style={{ color: '#ef6c00', fontFamily: 'cursive', }}>All Buyers</Link></li>
                                 <li><Link to="/dashboard/allsellers" className='font-bold text-2xl' style={{ color: '#ef6c00', fontFamily: 'cursive', }}>All Sellers</Link></li>
+                                <li><Link to="/dashboard/report" className='font-bold text-2xl' style={{ color: '#ef6c00', fontFamily: 'cursive', }}>Reported Items</Link></li>
                             </>
                         }
                         {isBuyer &&

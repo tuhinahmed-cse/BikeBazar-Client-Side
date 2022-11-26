@@ -1,8 +1,27 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
 const Show = ({ category, setBooks }) => {
   // console.log(category);
   const { name, condition, Mobile, description, img, location, orginal_price, resale_price, seller_name, time, year_use } = category;
+
+
+  const handleReport = id =>{
+    fetch(`http://localhost:5000/report/${id}`, {
+      method: 'PUT', 
+      headers: {
+          authorization: `bearer ${localStorage.getItem('accessToken')}`
+      }
+  })
+  .then(res => res.json())
+  .then(data => {
+      if(data.modifiedCount > 0){
+          toast.success('Report successful.')
+      }
+  })
+
+    
+  }
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -37,7 +56,7 @@ const Show = ({ category, setBooks }) => {
         </div>
         <div className="divider"></div>
         <div className="lg:flex card-actions justify-between">
-          <button className="btn btn-primary">Report Admin</button>
+          <button onClick={() => handleReport(category._id)} className="btn btn-primary">Report to Admin</button>
           <label
                        
                         htmlFor="booking-modal"
