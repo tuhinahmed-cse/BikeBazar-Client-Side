@@ -20,6 +20,7 @@ const BikeCategory = () => {
        
 
            <>
+            <div className='bg-cyan-50'>
             <div className='mt-20 '>
             <h2 className='text-center font-bold text-2xl' style={{color:'#795548', fontFamily:'cursive'}}> Categories of Bike for Selling</h2>
             </div>
@@ -29,6 +30,7 @@ const BikeCategory = () => {
             {
                 categories.map((category,i)=> <BikeCollection key={i} category={category} ></BikeCollection>)    
             }
+            </div>
             </div>
            
            </>

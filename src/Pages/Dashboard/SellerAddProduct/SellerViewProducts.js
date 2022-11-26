@@ -6,7 +6,7 @@ import Loading from '../../Shared/Loading/Loading'
 import DeleteModal from '../DeleteModal/DeleteModal';
 
 const SellerViewProducts = () => {
-    const buttonRef = useRef();
+    
 
 
     const { user } = useContext(AuthContext);
@@ -60,7 +60,7 @@ const SellerViewProducts = () => {
         .then(data => {
             if(data.modifiedCount > 0){
                 toast.success('Advertise successful')
-                buttonRef.current.disabled = true;
+                
                 refetch();
                 
             }
@@ -95,7 +95,7 @@ const SellerViewProducts = () => {
                             bikes.map((bike, i) => <tr key={bike._id}>
                                 <th>{i + 1}</th>
                                 <td><div className="avatar">
-                                    <div className="w-24 rounded-full">
+                                    <div className="w-24 rounded">
                                         <img src={bike.img} alt="" />
                                     </div>
                                 </div></td>
@@ -105,7 +105,7 @@ const SellerViewProducts = () => {
 
                                     {
                                         (bike.status === "Available") && <>
-                                        <button className="btn btn-info" ref={buttonRef} onClick={() => handleAdvertise(bike._id)}  >Advertise</button>
+                                        <button className="btn btn-info" onClick={() => handleAdvertise(bike._id)}  >Advertise</button>
                                         </>
                                     }
                                 </td>
