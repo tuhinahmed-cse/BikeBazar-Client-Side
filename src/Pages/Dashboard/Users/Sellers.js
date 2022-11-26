@@ -18,6 +18,29 @@ const Sellers = () => {
             return data;
         }
     });
+const handleVerify = id =>{
+    fetch(`http://localhost:5000/verify/${id}`, {
+        method: 'PUT', 
+        headers: {
+            authorization: `bearer ${localStorage.getItem('accessToken')}`
+        }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.modifiedCount > 0){
+            toast.success('Verify successful.')
+            refetch();
+        }
+    })
+
+
+}
+
+
+
+
+
+
 
     const handleDeleteUser=user=>{
 
@@ -46,6 +69,7 @@ const Sellers = () => {
      <th></th>
      <th>Name</th>
      <th>Email</th>
+     <th>Verify</th>
      <th>Delete</th>
    </tr>
  </thead>
@@ -55,6 +79,7 @@ const Sellers = () => {
          <th>{i+1}</th>
          <td>{user.name}</td>
          <td>{user.email}</td>
+         <td><button onClick={() => handleVerify(user._id)} className="btn btn-sm btn-accent" >verify</button></td>
 
          <td>
                                  <label onClick={() => setDeletingUser(user)} htmlFor="confirmation-modal" className="btn btn-sm btn-error">Delete</label>

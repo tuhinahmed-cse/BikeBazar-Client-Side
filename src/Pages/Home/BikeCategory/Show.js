@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../contexts/AuthProvider';
+import useBuyer from '../../../hooks/useBuyer';
+
 
 const Show = ({ category, setBooks }) => {
   // console.log(category);
   const { name, condition, Mobile, description, img, location, orginal_price, resale_price, seller_name, time, year_use } = category;
 
+  const { user } = useContext(AuthContext);
+  const [isBuyer] = useBuyer(user?.email);
 
   const handleReport = id =>{
     fetch(`http://localhost:5000/report/${id}`, {
@@ -55,15 +60,26 @@ const Show = ({ category, setBooks }) => {
         <p ><span style={{ color: '#ff6e40' }}>Post Update: </span> {time}</p>
         </div>
         <div className="divider"></div>
-        <div className="lg:flex card-actions justify-between">
-          <button onClick={() => handleReport(category._id)} className="btn btn-primary">Report to Admin</button>
-          <label
+
+        { isBuyer && 
+
+<div className="lg:flex card-actions justify-between">
+<button onClick={() => handleReport(category._id)} className="btn btn-primary">Report to Admin</button>
+          
+           
+<>
+<label
                        
-                        htmlFor="booking-modal"
-                        className="btn btn-primary"
-                        onClick={() => setBooks(category)}
-                    >Book Bike</label>
+htmlFor="booking-modal"
+className="btn btn-primary"
+onClick={() => setBooks(category)}
+>Book Bike</label>
+
+</>
+
+            
         </div>
+        }
       </div>
     </div>
   );

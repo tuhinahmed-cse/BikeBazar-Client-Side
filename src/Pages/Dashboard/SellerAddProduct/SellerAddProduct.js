@@ -1,9 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
-import useSeller from '../../../hooks/useSeller';
+
 
 
 const SellerAddProduct = () => {
@@ -75,13 +76,13 @@ const SellerAddProduct = () => {
         })
 
     }
+    
+
+
 
     let email= user?.email;
-
+    let name= user?.displayName;
     let showDate = new Date();
-
-  
-
     let displayToday= showDate.getDate()+'/'+showDate.getMonth()+'/'+showDate.getFullYear()+'-'+showDate.getHours()+':'+showDate.getMinutes()+':'+showDate.getSeconds();
     return (
         <div className='bg-gradient-to-r from-green-400 to-blue-500' style={{height:'230vh'}}>
@@ -169,7 +170,7 @@ const SellerAddProduct = () => {
                     <label className="label"> <span className="label-text">Seller Name</span></label>
                     <input type="text" {...register("seller_name", {
                         required: "seller_name is Required"
-                    })} className="input input-bordered w-full max-w-xs" />
+                    })} defaultValue={name} readOnly className="input input-bordered w-full max-w-xs" />
                     {errors.seller_name && <p className='text-red-500'>{errors.seller_name.message}</p>}
                 </div>
 
@@ -222,7 +223,11 @@ const SellerAddProduct = () => {
                         required: "time is Required"
                     })} defaultValue={displayToday} className="input input-bordered w-full max-w-xs" />
                     {errors.time && <p className='text-red-500'>{errors.time.message}</p>}
-                </div>
+                  </div>
+
+                 
+
+                
 
                     
             
