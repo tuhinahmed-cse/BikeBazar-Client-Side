@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import Loading from '../../Shared/Loading/Loading'
 import DeleteModal from '../DeleteModal/DeleteModal';
 
 const SellerViewProducts = () => {
+    const buttonRef = useRef();
 
 
     const { user } = useContext(AuthContext);
@@ -47,6 +48,27 @@ const SellerViewProducts = () => {
 
     }
 
+    const handleAdvertise = id => {
+
+        fetch(`http://localhost:5000/bikes/seller/${id}`, {
+            method: 'PUT', 
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            if(data.modifiedCount > 0){
+                toast.success('Advertise successful')
+                buttonRef.current.disabled = true;
+                refetch();
+                
+            }
+        })
+    }
+
+
+
     if (isLoading) {
         return <Loading></Loading>
     }
@@ -83,7 +105,7 @@ const SellerViewProducts = () => {
 
                                     {
                                         (bike.status === "Available") && <>
-                                        <button className="btn btn-info">Advertise</button>
+                                        <button className="btn btn-info" ref={buttonRef} onClick={() => handleAdvertise(bike._id)}  >Advertise</button>
                                         </>
                                     }
                                 </td>
@@ -99,7 +121,7 @@ const SellerViewProducts = () => {
             {
                 deletingBike && 
                 <DeleteModal 
-                title={`Are you sure you want to delete this user?`}
+                title={`Are you sure you want to delete?`}
                 successAction = {handleDeleteBike}
                 successButtonName="Delete"
                 modalData = {deletingBike}

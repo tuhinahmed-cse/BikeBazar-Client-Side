@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useSeller from '../../../hooks/useSeller';
 
@@ -9,6 +10,7 @@ const SellerAddProduct = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const imageHostKey = process.env.REACT_APP_imgbb_key;
 
 
@@ -64,6 +66,7 @@ const SellerAddProduct = () => {
                 .then(result =>{
                     console.log(result);
                     toast.success(`Bike is added successfully`);
+                    navigate('/dashboard/viewproduct')
                 })
 
 
