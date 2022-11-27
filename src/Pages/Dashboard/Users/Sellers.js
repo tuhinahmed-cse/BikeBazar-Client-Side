@@ -14,13 +14,13 @@ const Sellers = () => {
 
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/sellers');
+            const res = await fetch('https://b612-used-products-resale-server-side-xi.vercel.app/sellers');
             const data = await res.json();
             return data;
         }
     });
     const handleVerify = id => {
-        fetch(`http://localhost:5000/verify/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/verify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -45,7 +45,7 @@ const Sellers = () => {
 
     const handleDeleteUser = user => {
 
-        fetch(`http://localhost:5000/users/${user._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/users/${user._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

@@ -54,7 +54,7 @@ const Login = () => {
             saveUser(user.displayName, user.email, user.role);
 
 
-            fetch(`http://localhost:5000/users/${ user.email}`, {
+            fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/users/${ user.email}`, {
             method: 'PUT', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -74,7 +74,7 @@ const Login = () => {
 
     const saveUser = (name, email, role) =>{
         const user ={name, email, role};
-        fetch('http://localhost:5000/users', {
+        fetch('https://b612-used-products-resale-server-side-xi.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

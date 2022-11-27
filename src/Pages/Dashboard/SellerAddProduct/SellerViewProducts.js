@@ -15,7 +15,7 @@ const SellerViewProducts = () => {
     const closeModal = () => {
         setDeletingBike(null);
     }
-    const url = `http://localhost:5000/sellerBike?email=${user?.email}`;
+    const url = `https://b612-used-products-resale-server-side-xi.vercel.app/sellerBike?email=${user?.email}`;
 
     const { data: bikes = [], isLoading, refetch } = useQuery({
         queryKey: ['bikes', user?.email],
@@ -31,7 +31,7 @@ const SellerViewProducts = () => {
     })
 
     const handleDeleteBike = bike =>{
-        fetch(`http://localhost:5000/sellerBike/${bike._id}`, {
+        fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/sellerBike/${bike._id}`, {
             method: 'DELETE', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -50,7 +50,7 @@ const SellerViewProducts = () => {
 
     const handleAdvertise = id => {
 
-        fetch(`http://localhost:5000/bikes/seller/${id}`, {
+        fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/bikes/seller/${id}`, {
             method: 'PUT', 
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

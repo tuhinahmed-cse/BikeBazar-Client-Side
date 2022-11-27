@@ -54,7 +54,7 @@ const SellerAddProduct = () => {
                 }
                 // console.log(bike);
 
-                fetch('http://localhost:5000/bikes',{
+                fetch('https://b612-used-products-resale-server-side-xi.vercel.app/bikes',{
 
                     method: 'POST',
                     headers: {
@@ -80,7 +80,7 @@ const SellerAddProduct = () => {
     }
 
 
-    const url = `http://localhost:5000/sell?email=${user?.email}`;
+    const url = `https://b612-used-products-resale-server-side-xi.vercel.app/sell?email=${user?.email}`;
 
     const { data: bookings = [] } = useQuery({
         queryKey: ['bookings', user?.email],

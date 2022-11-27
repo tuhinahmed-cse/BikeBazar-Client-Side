@@ -13,7 +13,7 @@ const Show = ({ category, setBooks }) => {
   const [isBuyer] = useBuyer(user?.email);
 
   const handleReport = id =>{
-    fetch(`http://localhost:5000/report/${id}`, {
+    fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/report/${id}`, {
       method: 'PUT', 
       headers: {
           authorization: `bearer ${localStorage.getItem('accessToken')}`

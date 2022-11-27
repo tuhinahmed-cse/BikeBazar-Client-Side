@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             {
                 path: '/collection/:id',
                 element: <PrivateRoute><AllBikeCategory></AllBikeCategory></PrivateRoute>,
-                loader:({ params }) => fetch(`http://localhost:5000/bikes/${params.id}`)
+                loader:({ params }) => fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/bikes/${params.id}`)
             },
             
         ]
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
 
                 path: '/dashboard/payment/:id',
                 element: <BuyerRoute><Payment></Payment></BuyerRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({params}) => fetch(`https://b612-used-products-resale-server-side-xi.vercel.app/bookings/${params.id}`)
             },
             {
 

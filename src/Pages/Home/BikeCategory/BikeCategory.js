@@ -9,7 +9,7 @@ const BikeCategory = () => {
     const  [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/bikeCategory')
+        fetch('https://b612-used-products-resale-server-side-xi.vercel.app/bikeCategory')
             .then(res => res.json())
             .then(data => setCategories(data))
     }, [])

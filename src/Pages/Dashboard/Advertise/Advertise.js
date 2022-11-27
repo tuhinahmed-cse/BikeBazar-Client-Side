@@ -7,7 +7,7 @@ const Advertise = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/advertise')
+        fetch('https://b612-used-products-resale-server-side-xi.vercel.app/advertise')
             .then(res => res.json())
             .then(data =>setAdvertises(data))
     }, [])
