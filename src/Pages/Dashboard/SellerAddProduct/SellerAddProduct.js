@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
@@ -7,6 +8,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 
 
 const SellerAddProduct = () => {
+
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
@@ -47,7 +49,8 @@ const SellerAddProduct = () => {
                     img: imgData.data.url,
                     description: data.description, 
                     status: data.status, 
-                    time: data.time, 
+                    time: data.time,
+                    sell_id: data.sell_id,
                 }
                 // console.log(bike);
 
@@ -75,14 +78,32 @@ const SellerAddProduct = () => {
         })
 
     }
+
+
+    const url = `http://localhost:5000/sell?email=${user?.email}`;
+
+    const { data: bookings = [] } = useQuery({
+        queryKey: ['bookings', user?.email],
+        queryFn: async () => {
+            const res = await fetch(url, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            });
+            const data = await res.json();
+            return data;
+        }
+    })
     
-
-
-
+   
+    
     let email= user?.email;
     let name= user?.displayName;
     let showDate = new Date();
     let displayToday= showDate.getDate()+'/'+showDate.getMonth()+'/'+showDate.getFullYear()+'-'+showDate.getHours()+':'+showDate.getMinutes()+':'+showDate.getSeconds();
+
+
+    
     return (
         <div className='bg-gradient-to-r from-green-400 to-blue-500' style={{height:'230vh'}}>
             <div className='lg:ml-96 mt-5 w-96 p-7 bg-lime-200' >
@@ -126,7 +147,8 @@ const SellerAddProduct = () => {
                     })} className="input input-bordered w-full max-w-xs" />
                     {errors.name && <p className='text-red-500'>{errors.name.message}</p>}
                 </div>
-
+                
+                
                 <div className="form-control w-full max-w-xs">
                     <label className="label"> <span className="label-text">Location</span></label>
                     <input type="text" {...register("location", {
@@ -225,6 +247,21 @@ const SellerAddProduct = () => {
                   </div>
 
                  
+                  <div className="form-control w-full max-w-xs">
+                    <label className="label"> <span className="label-text">Seller ID</span></label>
+                    <select type
+                    {...register('sell_id')}
+                    className="select input-bordered w-full max-w-xs">
+                        {
+                            bookings.map(s => <option
+                               
+                                
+                                selected >{s._id}</option>)
+                        }
+                        
+                        
+                    </select>
+                </div>
 
                 
 

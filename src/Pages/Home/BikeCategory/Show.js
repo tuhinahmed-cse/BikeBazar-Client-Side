@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { FcApproval } from 'react-icons/fc';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useBuyer from '../../../hooks/useBuyer';
 
 
 const Show = ({ category, setBooks }) => {
-  // console.log(category);
-  const { name, condition, Mobile, description, img, location, orginal_price, resale_price, seller_name, time, year_use } = category;
+  console.log(category);
+  const { name, condition, Mobile, description, img, location, orginal_price, resale_price, seller_name, time, year_use, verify} = category;
 
   const { user } = useContext(AuthContext);
   const [isBuyer] = useBuyer(user?.email);
@@ -49,6 +50,9 @@ const Show = ({ category, setBooks }) => {
 
         <div className='lg:flex'>
           <p ><span style={{ color: '#ff6e40' }}>Seller Name: </span> {seller_name}</p>
+         <p> {
+            verify && <p><FcApproval className='text-4xl'></FcApproval></p>
+          }</p>
           <p ><span style={{ color: '#ff6e40' }}>Mobile: </span> {Mobile}</p>
           <p ><span style={{ color: '#ff6e40' }}>Location: </span> {location}</p>
           

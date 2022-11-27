@@ -65,7 +65,7 @@ const UserBookings = () => {
                                         </Link>
                                     }
                                     {
-                                        booking.price && booking.paid && <span className='text-orange-300'>Paid</span>
+                                        booking.price && booking.paid && <span className='font-bold bg-red-400 rounded p-1'>Paid</span>
                                     }
                                 </td>
                                 
