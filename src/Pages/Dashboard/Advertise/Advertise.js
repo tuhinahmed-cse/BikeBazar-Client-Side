@@ -18,7 +18,7 @@ const Advertise = () => {
     return (
         <div className='mt-20 bg-teal-50'>
             {
-         advertises?.length &&  <>
+         advertises?.length  &&  <>
 
 <h2 className='text-center font-bold text-2xl' style={{color:'#795548', fontFamily:'cursive'}}> Currently Our Best secound hand Bikes For Sell</h2>
 
