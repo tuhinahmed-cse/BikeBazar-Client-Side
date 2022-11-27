@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Dashboard from "../../Layouts/Dashboard";
 import Main from "../../Layouts/Main";
 import Blog from "../../Pages/Blog/Blog";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 import Report from "../../Pages/Dashboard/Report/Report";
 import SellerAddProduct from "../../Pages/Dashboard/SellerAddProduct/SellerAddProduct";
 import SellerViewProducts from "../../Pages/Dashboard/SellerAddProduct/SellerViewProducts";
@@ -63,6 +64,12 @@ const router = createBrowserRouter([
 
                 path: '/dashboard/userbooks',
                 element: <BuyerRoute><UserBookings></UserBookings></BuyerRoute>
+            },
+            {
+
+                path: '/dashboard/payment/:id',
+                element: <BuyerRoute><Payment></Payment></BuyerRoute>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookings/${params.id}`)
             },
             {
 
